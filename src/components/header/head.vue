@@ -14,7 +14,7 @@
           <!--{{seller}}-->
         </div>
         <div v-if="seller.supports" class="support">
-          <span class="icon" :class="ssaa[seller.supports[0].type]"></span>
+          <span class="icon" :class="classMap[seller.supports[0].type]"></span>
           <span class="text">{{seller.supports[0].description}}</span>
         </div>
       </div>
@@ -31,24 +31,26 @@
     <div class="background">
       <img :src="seller.avatar" alt="#">
     </div>
-    <div class="detail" v-show="detailShow" >
-      <detail :seller="seller" :detailShow="detailShow" :ssaa="ssaa"></detail>
-    </div>
+      <div class="detail" v-show="detailShow" >
+        <detail :seller="seller" :classMap="classMap"></detail>
+      </div>
   </div>
 </template>
 
 <script>
+import Vuex from 'vuex'
+import store from './vuex.js'
+import Vue from 'vue'
   import style from './header.less'
   import icomon from '../../common/style.css'
-  //  import star from '../star/star.vue'
+  import star from '../star/star.vue'
   import detail from './detail.vue'
-  import store from './vuex.js'
+//import
   export default {
     name:'head',
     data:function () {
       return {
-//        detailShow:
-//        seller:''
+//        detailShow:false
       }
     },
     props:{
@@ -57,23 +59,21 @@
       }
     },
     computed:{
-      detailShow:function () {
-        return store.state.detailShow;
-      }
+        detailShow:function () {
+          return store.state.detailShow;
+        }
     },
     methods:{
       showDetail:function () {
-//        this.detailShow=!this.detailShow;
+//        this.detailShow=store.state.detailShow;
         store.commit('increment');
-
       }
     },
     created:function () {
-//      this.seller=seller;
-//      console.log(seller);
-      this.ssaa=['decrease','discount','guarantee','invoice','special'];
+      this.classMap=['decrease','discount','guarantee','invoice','special'];
     },
     components:{
+      star,
       detail
     }
 

@@ -130,7 +130,7 @@ body {
   background: url(images/bulletin@2x.png);
   background-size: 100% 100%;
   display: inline-block;
-  line-height: 56px;
+  line-height: 28px;
   vertical-align: middle;
   width: 22px;
   height: 12px;
@@ -144,7 +144,7 @@ body {
   font-size: 10px;
   width: calc(100% - 52px);
   font-weight: 200;
-  line-height: 56px;
+  line-height: 28px;
   text-overflow: ellipsis;
   overflow: hidden;
 }

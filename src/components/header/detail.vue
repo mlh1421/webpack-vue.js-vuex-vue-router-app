@@ -18,7 +18,7 @@
         <div v-if="seller.supports" class="support">
           <template v-for='i in seller.supports.length'>
             <div class="item">
-              <span class="icon" :class="ssaa[seller.supports[i-1].type]"></span>
+              <span class="icon" :class="classMap[seller.supports[i-1].type]"></span>
               <span class="text">{{seller.supports[i-1].description}}</span>
             </div>
           </template>
@@ -51,17 +51,12 @@
         seller:{
             type:Object
         },
-      ssaa:{
+      classMap:{
             type:Array
       }
     },
     created:function () {
 //      this.seller=seller;   //只有第一次调用ajax才有效
-    },
-    computed:{
-      detailShow:function () {
-        return store.state.detailShow;
-      }
     },
     methods:{
       showDetail:function () {
