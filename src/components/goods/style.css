@@ -74,6 +74,9 @@
   font-size: 12px;
   vertical-align: top;
 }
+.goods .menu-wrapper ul .current {
+  background: #fff;
+}
 .goods .foods-wrapper ul li.food-list h1 {
   font-size: 12px;
   color: #93999f;
