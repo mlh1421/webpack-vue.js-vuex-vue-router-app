@@ -2,7 +2,7 @@
   <div class="goods">
     <div class="menu-wrapper" ref='menuWrapper'>
       <ul>
-        <li v-for="(item,index) in goods" :class="{'current':currentIndex==index}">
+        <li v-for="(item,index) in goods" :class="{'current':currentIndex==index}" @click='selectMenu(index,$event)'>
           <span class="text">
           <span v-show="item.type>0" :class="classMap[item.type]" class="icon"></span>
             {{item.name}}
@@ -31,26 +31,38 @@
                   </span>
                   </div>
                 </div>
+                <add></add>
               </div>
             </li>
           </ul>
         </li>
       </ul>
     </div>
+    <shopcart :deliveryPrice='seller.deliveryPrice' :min-price='seller.minPrice'></shopcart>
   </div>
 </template>
 
 <script>
   import style from './style.less'
   import BScroll from 'better-scroll'
+  import shopcart from '../shopcart/shopcart.vue'
+  import add from './add.vue'
   export default {
     name: 'goods',
+    props:{
+        seller:{
+            type:Object
+        }
+    },
     data:function () {
       return {
-        goods:[],
+        goods:{},
+//        seller:{},
         classMap:['decrease','discount','guarantee','invoice','special'],
         listHeight:[],
-        scrollY:0
+        scrollY:0,
+        total:0
+        // seller:seller
       //  currentIndex:0
       }
     },
@@ -83,6 +95,11 @@
       }
     },
     created:function () {
+//      this.$http.get('api/seller').then(function(response){
+//        if(response.body.errno==0){
+//          this.seller=response.body.data;
+//        }
+//      })
       this.$http.get('api/goods').then(function (response) {
 //          console.log(response.body.errno);
         if(response.body.errno==0){
@@ -98,10 +115,24 @@
       })
     },
     methods:{
+      selectMenu:function(index,event){
+        // alert(index);
+        if(!event._constructed){      //取消原生事件
+          return;
+        }
+        console.log(index);
+        // console.log(this.$refs.foodWrapper);
+        let foodList=this.$refs.foodList;
+        let el=foodList[index];
+        this.foodScroll.scrollToElement(el,300);
+      },
       _initScroll:function(){
           var This=this;    //注意this的指向
-        this.menuScroll=new BScroll(this.$refs.menuWrapper,{});
+        this.menuScroll=new BScroll(this.$refs.menuWrapper,{
+          click:true
+        });
         this.foodScroll=new BScroll(this.$refs.foodWrapper,{
+          // click:true,
           probeType:3
         });
         this.foodScroll.on('scroll',function (pos) {
@@ -117,6 +148,10 @@
           this.listHeight.push(height);
         }
       }
+    },
+    components:{
+      shopcart,
+      add
     }
   }
 </script>
