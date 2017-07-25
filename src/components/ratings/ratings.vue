@@ -1,23 +1,25 @@
 <template>
   <div class='ratings'>
-    <div class="ratings-header">
-      <div class="header-left">
-        <span class="a">4.2</span>
-        <span class="b">综合评分</span>
-        <span class="c">高于周边商家69.2%</span>
-      </div>
-      <div class="header-right">
-        <div class="server">
-          <span>服务态度</span>
-          <star :score="4"></star>
+    <div class="ratings-content">
+      <div class="overview">
+        <div class="overview-left">
+          <h1 class="score">{{seller.score}}</h1>
+          <div class="title">综合评分</div>
+          <div class="rank">高于周边商家{{seller.rankRate}}</div>
         </div>
-        <div class="server2">
-          <span>服务态度</span>
-          <star :score="3"></star>
-        </div>
-        <div class="server3">
-          <span>送达时间</span>
-          <star :score="2.6"></star>
+        <div class="overview-right">
+          <div class="score-wrapper">
+              <span class="title">服务态度</span>
+              <star :size='36' :score='seller.serviceScore'></star>
+          </div>
+          <div class="score-wrapper">
+              <span class="title">商品评分</span>
+              <star :size='36' :score='seller.foodScore'></star>
+          </div>
+          <div class="delivery-wrapper">
+            <span class="title">送达时间</span>
+            <div class="deliveryTime">{{seller.deliveryTime}}分钟</div>
+          </div>
         </div>
       </div>
     </div>
@@ -29,6 +31,11 @@
   import star from '../star/star.vue'
   export default{
     name: 'ratings',
+    props:{
+      seller:{
+        type:Object
+      }
+    },
     data:function(){
       return {
         ratings:{}
@@ -42,7 +49,7 @@
       })
     },
     components:{
-        star
+      star
     }
   }
 </script>

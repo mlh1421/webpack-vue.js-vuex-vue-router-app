@@ -134,12 +134,12 @@
 .goods .foods-wrapper ul li.food-list ul li.food-item .content .extra .price .newPrice {
   margin-right: 8px;
 }
-.goods .foods-wrapper ul li.food-list ul li.food-item .content .add {
+.goods .foods-wrapper ul li.food-list ul li.food-item .content .cartcontrol {
   position: absolute;
   bottom: 10px;
   right: 18px;
 }
-.goods .foods-wrapper ul li.food-list ul li.food-item .content .add .icon-add_circle {
+.goods .foods-wrapper ul li.food-list ul li.food-item .content .cartcontrol .icon-add_circle {
   color: #00a0dc;
   line-height: 24px;
   font-size: 24px;

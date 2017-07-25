@@ -31,14 +31,14 @@
                   </span>
                   </div>
                 </div>
-                <add></add>
+                <cartcontrol :food='food'></cartcontrol>
               </div>
             </li>
           </ul>
         </li>
       </ul>
     </div>
-    <shopcart :deliveryPrice='seller.deliveryPrice' :min-price='seller.minPrice'></shopcart>
+    <shopcart :selectFoods='selectFoods' :deliveryPrice='seller.deliveryPrice' :min-price='seller.minPrice'></shopcart>
   </div>
 </template>
 
@@ -46,7 +46,7 @@
   import style from './style.less'
   import BScroll from 'better-scroll'
   import shopcart from '../shopcart/shopcart.vue'
-  import add from './add.vue'
+  import cartcontrol from './cartcontrol.vue'
   export default {
     name: 'goods',
     props:{
@@ -56,7 +56,7 @@
     },
     data:function () {
       return {
-        goods:{},
+        goods:[],
 //        seller:{},
         classMap:['decrease','discount','guarantee','invoice','special'],
         listHeight:[],
@@ -92,6 +92,21 @@
           }
         }
         return 0;
+      },
+      selectFoods:function(){
+        console.log(this.goods);
+        let foods=[];
+        this.goods.forEach(function(good){
+          good.foods.forEach(function(food){
+            if(food.count){
+              foods.push(food);
+            }
+          })
+        })
+        // for(var good=0;good<goods.length;good++){
+        //   console.log(good);
+        // }
+        return foods;
       }
     },
     created:function () {
@@ -132,7 +147,7 @@
           click:true
         });
         this.foodScroll=new BScroll(this.$refs.foodWrapper,{
-          // click:true,
+           click:true,
           probeType:3
         });
         this.foodScroll.on('scroll',function (pos) {
@@ -151,7 +166,7 @@
     },
     components:{
       shopcart,
-      add
+      cartcontrol
     }
   }
 </script>

@@ -61,8 +61,16 @@
 .shopcart .content .content-right {
   flex: 0 0 105px;
   width: 105px;
+}
+.shopcart .content .content-right .pay {
   color: rgba(255, 255, 255, 0.4);
   text-align: center;
+  height: 48px;
   font-size: 12px;
   line-height: 48px;
+  font-weight: 700;
+}
+.shopcart .content .content-right .enough {
+  color: #ffffff;
+  background: #00b43c;
 }
