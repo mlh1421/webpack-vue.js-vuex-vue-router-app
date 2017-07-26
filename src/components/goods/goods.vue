@@ -1,6 +1,6 @@
 <template>
   <div class="goods">
-    <div class="menu-wrapper" ref='menuWrapper'>
+    <div class="menu-wrapper" ref="menuWrap">
       <ul>
         <li v-for="(item,index) in goods" :class="{'current':currentIndex==index}" @click='selectMenu(index,$event)'>
           <span class="text">
@@ -11,11 +11,12 @@
       </ul>
     </div>
     <div class="foods-wrapper" ref='foodWrapper'>
+      <!--<div class="aabb"></div>-->
       <ul>
         <li v-for="item in goods" class="food-list" ref='foodList'>
           <h1>{{item.name}}</h1>
           <ul>
-            <li v-for="food in item.foods" class="food-item">
+            <li v-for="food in item.foods" class="food-item" @click="show(food,$event)">
               <div class="icon">
                 <img :src="food.icon" alt="#">
               </div>
@@ -33,6 +34,9 @@
                 </div>
                 <cartcontrol :food='food'></cartcontrol>
               </div>
+              <!--<div :class="{foodWrapper:food.ck}">-->
+              <!--<food :selectedfood="selectedfood" :ck="ck"></food>-->
+              <!--</div>-->
             </li>
           </ul>
         </li>
@@ -47,39 +51,26 @@
   import BScroll from 'better-scroll'
   import shopcart from '../shopcart/shopcart.vue'
   import cartcontrol from './cartcontrol.vue'
+  import food from '../food/food.vue'
   export default {
     name: 'goods',
     props:{
-        seller:{
-            type:Object
-        }
+      seller:{
+        type:Object
+      }
     },
     data:function () {
       return {
         goods:[],
-//        seller:{},
         classMap:['decrease','discount','guarantee','invoice','special'],
         listHeight:[],
         scrollY:0,
-        total:0
-        // seller:seller
-      //  currentIndex:0
+        total:0,
+        ck:false,
+        selectedfood:{}
       }
     },
     computed:{
-//      currentIndex:function () {
-//        console.log(this.scrollY);
-//        for(let i=0;i<this.listHeight.length;i++){
-//          let height1=this.listHeight[i];
-//          let height2=this.listHeight[i+1];
-//          if(this.scrollY>height1&&this.scrollY<height2){
-//            console.log("i:"+i);
-//          console.log("height1:"+height1+" scrollY:"+this.scrollY);
-//            return i;
-//          }
-//        }
-//        return 0;
-//      }
       currentIndex(){
         for (let i = 0; i < this.listHeight.length; i++) {
           let height1 = this.listHeight[i];
@@ -121,24 +112,34 @@
       })
     },
     methods:{
-      selectMenu:function(index,event){
-        // alert(index);
+      show:function (food,event) {
         if(!event._constructed){      //取消原生事件
           return;
         }
-        console.log(index);
-        // console.log(this.$refs.foodWrapper);
+          console.log(food);
+        this.ck=!this.ck;
+        food.ck=this.ck;
+////        console.log(food);
+        this.selectedfood=food;
+        console.log(this.selectedfood);
+      },
+      selectMenu:function(index,event){
+        if(!event._constructed){      //取消原生事件
+          return;
+        }
         let foodList=this.$refs.foodList;
         let el=foodList[index];
         this.foodScroll.scrollToElement(el,300);
       },
       _initScroll:function(){
-          var This=this;    //注意this的指向
-        this.menuScroll=new BScroll(this.$refs.menuWrapper,{
+        var This=this;    //注意this的指向
+        console.log(this.$refs.menuWrap);
+        this.menuScroll=new BScroll(this.$refs.menuWrap,{
           click:true
+//          probeType:3
         });
         this.foodScroll=new BScroll(this.$refs.foodWrapper,{
-           click:true,
+          click:true,
           probeType:3
         });
         this.foodScroll.on('scroll',function (pos) {
@@ -157,11 +158,14 @@
     },
     components:{
       shopcart,
-      cartcontrol
+      cartcontrol,
+      food
     }
   }
 </script>
 
 <style>
-
+  .foodWrapper{
+    display: none;
+  }
 </style>

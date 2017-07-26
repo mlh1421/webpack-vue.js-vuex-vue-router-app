@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>
-      <span class="icon-check_circle" :class="{on:!ck}"></span>
+      <span class="icon-check_circle" @click="greet" :class="{on:!ck}"></span>
       <span @click='greet'>只看有内容的评价</span>
     </h1>
     <ul>
@@ -10,12 +10,15 @@
           <img :src="item.avatar" alt="">
         </div>
         <div class="content">
-          {{item.username}}
+          <div class="username">{{item.username}}</div>
           <star :score="item.score"></star>
-          <div>
+          <div class="deliveryTime">
             {{item.deliveryTime}}
           </div>
-          <p>{{item.text}}</p>
+          <p class="ratingText">{{item.text}}</p>
+          <div class="rateTime">
+            {{new Date(item.rateTime).getFullYear()+"-"+(new Date(item.rateTime).getMonth()+1)+"-"+new Date(item.rateTime).getDate()+"-"+new Date(item.rateTime).getHours()+"-"+new Date(item.rateTime).getMinutes()}}
+          </div>
         </div>
       </li>
     </ul>
@@ -40,17 +43,35 @@
     },
     methods:{
       greet:function(event){
-        if(!event._constructed){
-          return;
-        }
+//        if(!event._constructed){
+//          return;
+//        }
         this.ck=!this.ck
         console.log(this.ch);
       }
     }
   }
 </script>
-<style>
+<style lang="less">
   h1{
-    margin:10px 0;
+    display:block;
+    padding:0 18px;
+  span{
+    display: inline-block;
+    padding: 12px 0;
+    vertical-align: middle;
+    color:rgb(147,153,159);
+    font-size: 12px;
+  }
+  .text{
+    line-height: 24px;
+  }
+  .icon-check_circle{
+    font-size:24px;
+  }
+  .on{
+    display: inline-block;
+    color:#00c850;
+  }
   }
 </style>

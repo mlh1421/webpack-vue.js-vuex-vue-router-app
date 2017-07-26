@@ -4,8 +4,8 @@ import goods from '../components/goods/goods.vue'
 import seller from '../components/seller/seller.vue'
 import ratings from '../components/ratings/ratings.vue'
 import all from '../components/ratings/all.vue'
-import manyi from '../components/ratings/bb.vue'
-import bumanyi from '../components/ratings/cc.vue'
+import satisfaction from '../components/ratings/bb.vue'
+import dissatisfaction from '../components/ratings/cc.vue'
 
 Vue.use(Router)
 
@@ -37,12 +37,12 @@ export default new Router({
           component: all
         },
         {
-          path: '/manyi',
-          component: manyi
+          path: '/satisfaction',
+          component: satisfaction
         },
         {
-          path: '/bumanyi',
-          component: bumanyi
+          path: '/dissatisfaction',
+          component:dissatisfaction
         }
       ]
     }

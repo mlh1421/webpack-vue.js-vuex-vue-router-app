@@ -1,6 +1,6 @@
 <template>
   <div class='ratings' ref="ratingsScroll">
-    <div class="ratings-content" ref="ratingsScroll">
+    <div class="ratings-content">
       <div class="overview">
         <div class="overview-left">
           <h1 class="score">{{seller.score}}</h1>
@@ -25,8 +25,8 @@
       <div class="content">
         <div class="select">
           <router-link to="/all" class="aa">全部{{ratings.length}}</router-link>
-          <router-link to="/manyi" class="bb">满意{{ratings.length}}</router-link>
-          <router-link to="/bumanyi" class="cc">不满意{{ratings.length}}</router-link>
+          <router-link to="/satisfaction" class="bb">满意{{satisfactionLength}}</router-link>
+          <router-link to="/dissatisfaction" class="cc">不满意{{disSatisfactionLength}}</router-link>
         </div>
         <router-view :ratings='ratings'></router-view>
       </div>
@@ -51,25 +51,51 @@
         ratings:[]
       }
     },
+    computed:{
+        satisfactionLength:function () {
+          let i=0;
+          this.ratings.forEach(function (item) {
+              if(item.score>=4){
+                  i++;
+              }
+          })
+          return i;
+        },
+      disSatisfactionLength:function () {
+        let i=0;
+        this.ratings.forEach(function (item) {
+          if(item.score<4){
+            i++;
+          }
+        })
+        return i;
+      }
+    },
     created:function(){
-      // let This=this;
       this.$http.get('api/ratings').then(function(response){
         if(response.body.errno==0){
           this.ratings=response.body.data;
           this.$nextTick(function () {
+              var This=this;
+            addEventListener('hashchange',function () {
+//              console.log(This);
+//              This.Scroll.refresh();
+            });
             this.initScroll();
           });
         }
       })
     },
     methods:{
+        aabb:function () {
+            console.log(1);
+          this.Scroll.refresh();
+        },
       initScroll:function () {
-        // console.log(this.$refs.ratingsScroll);
-        // console.log(BScroll);
-        this.Scroll=new BScroll(this.$refs.ratingsScroll,{
-          click:true,
-          probeType:3
-        });
+//        this.Scroll=new BScroll(this.$refs.ratingsScroll,{
+//          click:true,
+//          probeType:3
+//        });
       }
     },
     components:{
@@ -78,6 +104,13 @@
   }
 </script>
 
-<style>
+<style lang="less">
+  .star{
+    .star-item{
+      width: 10px;
+      height: 10px;
+      margin-right: 10px;
+    }
+  }
 
 </style>

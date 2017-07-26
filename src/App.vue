@@ -42,6 +42,7 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
+  body
   #app
     .tab
       display flex

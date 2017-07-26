@@ -4,8 +4,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: auto;
-  overflow: hidden;
+  overflow: auto;
 }
 .ratings .ratings-content .overview {
   display: flex;
@@ -69,20 +68,57 @@
   color: #93999f;
   line-height: 18px;
 }
-.ratings .ratings-content .content {
-  padding: 18px;
+.ratings .ratings-content li {
+  padding: 16px 18px;
+  position: relative;
+  display: flex;
 }
-.ratings .ratings-content .content .avatar {
-  display: inline-block;
+.ratings .ratings-content li .avatar {
+  width: 28px;
+  height: 28px;
 }
-.ratings .ratings-content .content .avatar img {
+.ratings .ratings-content li .avatar img {
   width: 28px;
   height: 28px;
   border-radius: 50%;
 }
-.ratings .ratings-content .content .content {
-  display: inline-block;
+.ratings .ratings-content li .content {
   margin-left: 12px;
+  flex: 1;
+}
+.ratings .ratings-content li .content .username {
+  font-size: 10px;
+  color: #07111b;
+  line-height: 24px;
+  margin-bottom: 4px;
+}
+.ratings .ratings-content li .content .content {
+  margin-left: 12px;
+}
+.ratings .ratings-content li .content .star {
+  display: inline-block;
+}
+.ratings .ratings-content li .content .deliveryTime {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 200;
+  color: #93999f;
+  line-height: 12px;
+}
+.ratings .ratings-content li .content .ratingText {
+  font-size: 12px;
+  color: #07111b;
+  font-weight: 200;
+  line-height: 12px;
+}
+.ratings .ratings-content li .content .rateTime {
+  position: absolute;
+  right: 18px;
+  top: 0;
+  font-size: 10px;
+  font-weight: 200;
+  color: #93999f;
+  line-height: 12px;
 }
 .aa {
   width: 60px;
@@ -114,17 +150,11 @@
   color: #4d555d;
   background: #e9ebec;
 }
-.router-link-active {
+.select .router-link-active {
   color: #fff;
   background: #00a0dc;
 }
 .select a:last-child.router-link-active {
   color: #fff;
   background: #4d555d;
-}
-.on {
-  display: inline-block;
-  width: 21px;
-  height: 21px;
-  color: #00c850;
 }
