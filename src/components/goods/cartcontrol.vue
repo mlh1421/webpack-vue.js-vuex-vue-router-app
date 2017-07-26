@@ -1,8 +1,8 @@
 <template>
   <div class="cartcontrol">
-  <transition name='move'>
-    <span v-show="food.count>0"  transition='move' class="icon-remove_circle_outline cart-decrease" @click="toLower"></span>
-  </transition>
+    <transition name='move'>
+      <span v-show="food.count>0"  transition='move' class="icon-remove_circle_outline cart-decrease" @click="toLower"></span>
+    </transition>
     <span v-show="food.count>0" class="cart-count">{{food.count}}</span>
     <span class="icon-add_circle cart-add" @click="toUpper"></span>
   </div>
@@ -24,24 +24,24 @@
     },
     methods:{
       toUpper:function (event) {
-          if(!event._constructed){
-              return;
-          }
-          if(!this.food.count){
-              Vue.set(this.food,'count',1);
-          }else{
-            this.food.count+=1;
-          }
+        if(!event._constructed){
+          return;
+        }
+        if(!this.food.count){
+          Vue.set(this.food,'count',1);     //给food添加属性
+        }else{
+          this.food.count+=1;
+        }
       },
       toLower:function (event) {
-          if(!event._constructed){
-              return;
-          }
-          if(this.food.count>0){
-        this.food.count--;
-          }else{
-            return;
-          }
+        if(!event._constructed){
+          return;
+        }
+        if(this.food.count>0){
+          this.food.count--;
+        }else{
+          return;
+        }
       }
     }
 
@@ -76,7 +76,7 @@
     line-height:24px;
   }
   .move-enter-active, .move-leave-active{
-      transition:all 1s;
+    transition:all 1s;
   }
   .move-enter, .move-leave-to{
     opacity:0;

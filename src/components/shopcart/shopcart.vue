@@ -27,7 +27,7 @@
       minPrice:{
         type:Number
       },
-      selectFoods:{
+      selectFoods:{     //被选中的食物
         type:Array,
         default(){      //默认值
           return [
@@ -51,7 +51,6 @@
         let total=0;
         this.selectFoods.forEach(function(food){    //food是数组selectFoods的元素
           total+=food.price*food.count;
-          console.log(food.price);
         });
         return total;
       },

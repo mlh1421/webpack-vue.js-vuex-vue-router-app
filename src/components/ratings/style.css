@@ -4,6 +4,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  height: auto;
   overflow: hidden;
 }
 .ratings .ratings-content .overview {
@@ -67,4 +68,63 @@
   font-size: 12px;
   color: #93999f;
   line-height: 18px;
+}
+.ratings .ratings-content .content {
+  padding: 18px;
+}
+.ratings .ratings-content .content .avatar {
+  display: inline-block;
+}
+.ratings .ratings-content .content .avatar img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+.ratings .ratings-content .content .content {
+  display: inline-block;
+  margin-left: 12px;
+}
+.aa {
+  width: 60px;
+  height: 32px;
+  font-size: 12px;
+  display: inline-block;
+  text-align: center;
+  color: #4d555d;
+  line-height: 32px;
+  background: #ccecf8;
+}
+.bb {
+  width: 60px;
+  height: 32px;
+  font-size: 12px;
+  background: #ccecf8;
+  display: inline-block;
+  text-align: center;
+  line-height: 32px;
+  color: #4d555d;
+}
+.cc {
+  width: 60px;
+  height: 32px;
+  font-size: 12px;
+  display: inline-block;
+  text-align: center;
+  line-height: 32px;
+  color: #4d555d;
+  background: #e9ebec;
+}
+.router-link-active {
+  color: #fff;
+  background: #00a0dc;
+}
+.select a:last-child.router-link-active {
+  color: #fff;
+  background: #4d555d;
+}
+.on {
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  color: #00c850;
 }

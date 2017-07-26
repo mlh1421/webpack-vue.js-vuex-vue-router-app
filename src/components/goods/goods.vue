@@ -81,20 +81,16 @@
 //        return 0;
 //      }
       currentIndex(){
-//        console.log(this.scrollY);
         for (let i = 0; i < this.listHeight.length; i++) {
           let height1 = this.listHeight[i];
           let height2 = this.listHeight[i + 1];
-//          console.log(i);
           if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
-//            console.log(i);
             return i;
           }
         }
         return 0;
       },
-      selectFoods:function(){
-        console.log(this.goods);
+      selectFoods:function(){   //筛选被选中的食物，是一个数组
         let foods=[];
         this.goods.forEach(function(good){
           good.foods.forEach(function(food){
@@ -103,9 +99,6 @@
             }
           })
         })
-        // for(var good=0;good<goods.length;good++){
-        //   console.log(good);
-        // }
         return foods;
       }
     },
@@ -116,10 +109,8 @@
 //        }
 //      })
       this.$http.get('api/goods').then(function (response) {
-//          console.log(response.body.errno);
         if(response.body.errno==0){
           this.goods=response.body.data;
-          // console.log(this.goods);
           this.$nextTick(function(){
             this._initScroll();
             this.calcHeight();
