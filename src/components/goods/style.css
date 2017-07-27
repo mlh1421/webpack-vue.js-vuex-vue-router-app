@@ -136,6 +136,10 @@
 .goods .foods-wrapper ul li.food-list ul li.food-item .content .extra .price .newPrice {
   margin-right: 8px;
 }
+.goods .foods-wrapper ul li.food-list ul li.food-item .content .extra .price .oldPrice {
+  text-decoration: line-through;
+  color: #93999f;
+}
 .goods .foods-wrapper ul li.food-list ul li.food-item .content .cartcontrol {
   position: absolute;
   bottom: 10px;

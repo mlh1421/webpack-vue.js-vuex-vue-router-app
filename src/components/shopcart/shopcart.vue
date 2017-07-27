@@ -7,11 +7,11 @@
             <span class="icon-shopping_cart"></span>
           </div>
         </div>
-        <div class="price">￥{{totalPrice}}</div>
+        <div class="price" :class="{on:on}">￥{{totalPrice}}</div>
         <div class="description">另需配送费￥{{deliveryPrice}}元</div>
       </div>
       <div class="content-right">
-        <div class="pay" :class="payClass">{{payDesc}}</div>
+        <div class="pay" :class="payClass" @click="pay">{{payDesc}}</div>
       </div>
     </div>
   </div>
@@ -39,7 +39,24 @@
         }
       }
     },
+    data:function(){
+      return {
+//          on:false
+      }
+    },
+    created:function () {
+//      if(this.totalPrice>0){
+//          this.on=true;
+//      }
+    },
     computed:{
+      on:function () {
+        if(this.totalPrice>0){
+          return  true;
+        }else{
+          return false
+        }
+      },
       payClass:function () {
         if(this.totalPrice<this.minPrice){
           return 'not-enough';
@@ -57,7 +74,7 @@
       totalCount(){
         let count =0;
         this.selectFoods.forEach(function(food){
-            this.food.count++;
+          this.food.count++;
         });
         return this.food.count;
       },
@@ -71,8 +88,14 @@
           return '结算'
         }
       }
+    },
+    methods:{
+      pay:function () {
+        if(this.totalPrice>=this.minPrice){
+          alert('支付'+this.totalPrice+'元');
+        }
+      }
     }
-
   }
 </script>
 <style>

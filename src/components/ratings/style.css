@@ -4,7 +4,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
 }
 .ratings .ratings-content .overview {
   display: flex;

@@ -1,8 +1,8 @@
 <template>
   <div class="cartcontrol">
-    <transition name='move'>
+    <!--<transition name='move'>-->
       <span v-show="food.count>0"  transition='move' class="icon-remove_circle_outline cart-decrease" @click="toLower"></span>
-    </transition>
+    <!--</transition>-->
     <span v-show="food.count>0" class="cart-count">{{food.count}}</span>
     <span class="icon-add_circle cart-add" @click="toUpper"></span>
   </div>

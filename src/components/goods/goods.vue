@@ -11,7 +11,6 @@
       </ul>
     </div>
     <div class="foods-wrapper" ref='foodWrapper'>
-      <!--<div class="aabb"></div>-->
       <ul>
         <li v-for="item in goods" class="food-list" ref='foodList'>
           <h1>{{item.name}}</h1>
@@ -116,12 +115,9 @@
         if(!event._constructed){      //取消原生事件
           return;
         }
-          console.log(food);
         this.ck=!this.ck;
         food.ck=this.ck;
-////        console.log(food);
         this.selectedfood=food;
-        console.log(this.selectedfood);
       },
       selectMenu:function(index,event){
         if(!event._constructed){      //取消原生事件
@@ -133,7 +129,6 @@
       },
       _initScroll:function(){
         var This=this;    //注意this的指向
-        console.log(this.$refs.menuWrap);
         this.menuScroll=new BScroll(this.$refs.menuWrap,{
           click:true
 //          probeType:3

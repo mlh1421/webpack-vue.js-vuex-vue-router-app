@@ -37,7 +37,6 @@
 <script>
   import style from './style.less'
   import BScroll from 'better-scroll'
-  console.log(BScroll);
   import star from '../star/star.vue'
   export default{
     name: 'ratings',
@@ -58,7 +57,7 @@
               if(item.score>=4){
                   i++;
               }
-          })
+          });
           return i;
         },
       disSatisfactionLength:function () {
@@ -67,7 +66,7 @@
           if(item.score<4){
             i++;
           }
-        })
+        });
         return i;
       }
     },
@@ -78,8 +77,7 @@
           this.$nextTick(function () {
               var This=this;
             addEventListener('hashchange',function () {
-//              console.log(This);
-//              This.Scroll.refresh();
+              This.Scroll.refresh();
             });
             this.initScroll();
           });
@@ -92,10 +90,10 @@
           this.Scroll.refresh();
         },
       initScroll:function () {
-//        this.Scroll=new BScroll(this.$refs.ratingsScroll,{
-//          click:true,
-//          probeType:3
-//        });
+        this.Scroll=new BScroll(this.$refs.ratingsScroll,{
+          click:true,
+          probeType:3
+        });
       }
     },
     components:{
